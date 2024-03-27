@@ -29,11 +29,29 @@ import * as React from 'react'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import { FlowListTable } from '@/ui-component/table/FlowListTable'
 import { StyledButton } from '@/ui-component/button/StyledButton'
+import { useUser } from "@clerk/clerk-react";
 
 // ==============================|| CHATFLOWS ||============================== //
 
+const FLOWISE_USERNAME = import.meta.env.VITE_FLOWISE_USERNAME | "user"
+const FLOWISE_PASSWORD = import.meta.env.VITE_FLOWISE_PASSWORD | "1234"
+
 const Chatflows = () => {
+
     const navigate = useNavigate()
+
+    const { isSignedIn, isLoaded, user } = useUser();
+
+     console.log({
+         isSignedIn, isLoaded, user
+     })
+
+
+
+    if (isLoaded &&  !isSignedIn ) {
+        navigate('/sign-in')
+    }
+
     const theme = useTheme()
     const customization = useSelector((state) => state.customization)
 
@@ -63,11 +81,7 @@ const Chatflows = () => {
         )
     }
 
-    const onLoginClick = (username, password) => {
-        localStorage.setItem('username', username)
-        localStorage.setItem('password', password)
-        navigate(0)
-    }
+
 
     const addNew = () => {
         navigate('/canvas')
@@ -78,6 +92,8 @@ const Chatflows = () => {
     }
 
     useEffect(() => {
+        localStorage.setItem('username', FLOWISE_USERNAME)
+        localStorage.setItem('password', FLOWISE_PASSWORD)
         getAllChatflowsApi.request()
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -212,7 +228,7 @@ const Chatflows = () => {
                     <div>No Chatflows Yet</div>
                 </Stack>
             )}
-            <LoginDialog show={loginDialogOpen} dialogProps={loginDialogProps} onConfirm={onLoginClick} />
+            {/*<LoginDialog show={loginDialogOpen} dialogProps={loginDialogProps} onConfirm={onLoginClick} />*/}
             <ConfirmDialog />
         </MainCard>
     )

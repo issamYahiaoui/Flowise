@@ -3,6 +3,7 @@ import { lazy } from 'react'
 // project imports
 import MainLayout from '@/layout/MainLayout'
 import Loadable from '@/ui-component/loading/Loadable'
+import LandingPage from "@/views/landing";
 
 // chatflows routing
 const Chatflows = Loadable(lazy(() => import('@/views/chatflows')))
@@ -25,12 +26,22 @@ const Credentials = Loadable(lazy(() => import('@/views/credentials')))
 // variables routing
 const Variables = Loadable(lazy(() => import('@/views/variables')))
 
+// Signin routing
+const Signin = Loadable(lazy(() => import('@/views/signin')))
+
+// Signup routing
+const Signup = Loadable(lazy(() => import('@/views/signup')))
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
     path: '/',
     element: <MainLayout />,
     children: [
+        // {
+        //     path: '/',
+        //     element: <LandingPage />
+        // },
         {
             path: '/',
             element: <Chatflows />

@@ -11,7 +11,9 @@ import Logo from '@/ui-component/extended/Logo'
 
 const LogoSection = () => (
     <ButtonBase disableRipple component={Link} to={config.defaultPath}>
-        <Logo />
+        {/*<Logo />*/}
+       <h3> Actualize Lab - Mira</h3>
+
     </ButtonBase>
 )
 
