@@ -16,6 +16,8 @@ import { baseURL } from '@/store/constant'
 
 // ==============================|| Chatbot ||============================== //
 
+const FLOWISE_USERNAME = "user"
+const FLOWISE_PASSWORD = "1234"
 const ChatbotFull = () => {
     const URLpath = document.location.pathname.toString().split('/')
     const chatflowId = URLpath[URLpath.length - 1] === 'chatbot' ? '' : URLpath[URLpath.length - 1]
@@ -31,13 +33,13 @@ const ChatbotFull = () => {
     const getSpecificChatflowFromPublicApi = useApi(chatflowsApi.getSpecificChatflowFromPublicEndpoint)
     const getSpecificChatflowApi = useApi(chatflowsApi.getSpecificChatflow)
 
-    const onLoginClick = (username, password) => {
-        localStorage.setItem('username', username)
-        localStorage.setItem('password', password)
-        navigate(0)
-    }
+
 
     useEffect(() => {
+
+        localStorage.setItem('username', FLOWISE_USERNAME)
+        localStorage.setItem('password', FLOWISE_PASSWORD)
+
         getSpecificChatflowFromPublicApi.request(chatflowId)
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -114,7 +116,7 @@ const ChatbotFull = () => {
                             theme={{ chatWindow: chatbotTheme }}
                         />
                     )}
-                    <LoginDialog show={loginDialogOpen} dialogProps={loginDialogProps} onConfirm={onLoginClick} />
+                    {/*<LoginDialog show={loginDialogOpen} dialogProps={loginDialogProps} onConfirm={onLoginClick} />*/}
                 </>
             ) : null}
         </>

@@ -33,8 +33,8 @@ import { useUser } from "@clerk/clerk-react";
 
 // ==============================|| CHATFLOWS ||============================== //
 
-const FLOWISE_USERNAME = import.meta.env.VITE_FLOWISE_USERNAME | "user"
-const FLOWISE_PASSWORD = import.meta.env.VITE_FLOWISE_PASSWORD | "1234"
+const FLOWISE_USERNAME = "user"
+const FLOWISE_PASSWORD = "1234"
 
 const Chatflows = () => {
 
